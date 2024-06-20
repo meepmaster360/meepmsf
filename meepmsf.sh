@@ -1,7 +1,7 @@
 #!/bin/bash
 # Author: meepmaster
-# Date: 06-05-2022
-# Description: Nmap scan and Metasploit installation options
+# Date: 20-06-2024
+# Description: Metasploit installation and running with postgresql and msfdatabase
 
 # Color variables
 RED="\033[1;31m"
