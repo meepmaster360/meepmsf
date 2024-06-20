@@ -10,7 +10,7 @@ NOCOLOR="\033[0m"
 
 # Time variable
 RIGHT_NOW=$(date +"%x %r %z")
-TIME_STAMP="Updated ${RED}${RIGHT_NOW}${NOCOLOR} by $USER"
+TIME_STAMP="MeepMSF start ${RED}${RIGHT_NOW}${NOCOLOR} by $USER"
 
 # User root check
 function user() {
@@ -39,10 +39,8 @@ function install_metasploit() {
         echo -e "\n${GREEN}[!]${NOCOLOR} msfconsole is already installed."
     fi
 
-    echo -e "\n${GREEN}[!]${NOCOLOR} Running msfupdate..."
-    msfupdate
-
     # Check if postgresql is installed
+    
     if ! command -v psql &> /dev/null; then
         echo -e "\n${GREEN}[!]${NOCOLOR} Installing postgresql..."
         apt-get install -y postgresql postgresql-contrib
@@ -50,12 +48,18 @@ function install_metasploit() {
         echo -e "\n${GREEN}[!]${NOCOLOR} postgresql is already installed."
     fi
 
+    # Start postgresql
+
     echo -e "\n${GREEN}[!]${NOCOLOR} Starting postgresql..."
     systemctl start postgresql
+
+    # Start msfdatabase
 
     echo -e "\n${GREEN}[!]${NOCOLOR} Initializing msfdb..."
     msfdb init
 
+    # Start msfconsole
+    
     echo -e "\n${GREEN}[!]${NOCOLOR} Starting msfconsole..."
     msfconsole
 }
@@ -63,10 +67,6 @@ function install_metasploit() {
 # Call the functions
 user
 connect
-
-echo
-echo -e "\n${GREEN}[!]${NOCOLOR} $TIME_STAMP"
-echo
 
 # Call the Metasploit installation function
 install_metasploit
