@@ -51,7 +51,7 @@ function install_metasploit() {
     # Start postgresql
 
     echo -e "\n${GREEN}[!]${NOCOLOR} Starting postgresql..."
-    systemctl start postgresql
+    sudo systemctl start postgresql
 
     # Start msfdatabase
 
@@ -61,7 +61,7 @@ function install_metasploit() {
     # Start msfconsole
     
     echo -e "\n${GREEN}[!]${NOCOLOR} Starting msfconsole..."
-    msfconsole
+    sudo msfconsole
 }
 
 # Call the functions
